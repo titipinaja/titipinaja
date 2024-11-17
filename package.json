@@ -58,7 +58,9 @@
     "three": "^0.170.0",
     "three-globe": "^2.34.5",
     "vaul": "^1.1.1",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zsa": "^0.6.0",
+    "zsa-react": "^0.2.3"
   },
   "devDependencies": {
     "@types/eslint": "^8.56.10",

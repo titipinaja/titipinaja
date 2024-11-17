@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/app/(app)/components/loading";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -17,21 +18,16 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { addListing } from "@/lib/db/listings";
+import { addListingSchema } from "@/lib/db/schema";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const addListingSchema = z.object({
-  baggage: z.coerce.number().min(1),
-  price: z.coerce.number().min(1),
-  lastReceivedAt: z.date(),
-  departureAt: z.date(),
-  arriveAt: z.date(),
-  termsAndConditions: z.string(),
-});
+import { type z } from "zod";
+import { useServerAction } from "zsa-react";
 
 export default function AddListingForm() {
   const form = useForm<z.infer<typeof addListingSchema>>({
@@ -39,10 +35,23 @@ export default function AddListingForm() {
     defaultValues: {},
   });
 
+  const { toast } = useToast();
+  const { isPending, execute } = useServerAction(addListing, {
+    onSuccess: () => {
+      toast({
+        title: "✅ Adding listing successful.",
+      });
+    },
+    onError: ({ err }) => {
+      toast({
+        title: `An error occured while adding listing. Error: ${err.message}`,
+        variant: "destructive",
+      });
+    },
+  });
+
   function onSubmit(values: z.infer<typeof addListingSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    void execute(values);
   }
 
   return (
@@ -139,7 +148,7 @@ export default function AddListingForm() {
 
         <FormField
           control={form.control}
-          name="lastReceivedAt"
+          name="lastReceiveAt"
           render={({ field }) => (
             <FormItem className="col-span-2 flex flex-col">
               <FormLabel>Last receive</FormLabel>
@@ -234,8 +243,8 @@ export default function AddListingForm() {
           )}
         />
 
-        <Button type="submit" className="col-span-2 mt-4">
-          Submit
+        <Button type="submit" className="col-span-2 mt-4" disabled={isPending}>
+          {!isPending ? "Submit" : <Loading />}
         </Button>
       </form>
     </Form>

@@ -9,7 +9,6 @@ export default async function Page() {
 
   return (
     <div className="grid gap-4">
-      <h3 className="text-base font-bold uppercase">Add listing</h3>
       <AddListingForm />
     </div>
   );
