@@ -6,7 +6,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "titipin.aja",
+  title: "< titipin.aja />",
   description:
     "A place where we can help our peers and saving our planet at the same time.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],

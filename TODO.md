@@ -11,6 +11,7 @@ create accounts
 
 create web application
 
-- [ ] create home page
-- [ ] database schema
-- [ ] create explore page
+- [x] create home page
+- [x] database schema
+- [ ] create explore page for guests
+- [ ] create manage page for users
