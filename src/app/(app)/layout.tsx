@@ -26,10 +26,18 @@ import {
   User,
   X,
 } from "lucide-react";
+import { type Viewport } from "next";
 import Link from "next/link";
 import LoginButton from "../auth/components/login-button";
 import Header from "./components/header";
 import UpdateWhatsAppForm from "./components/update-whatsapp-form";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export default async function Layout({
   children,
