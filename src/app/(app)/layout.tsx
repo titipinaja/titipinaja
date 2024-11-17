@@ -25,13 +25,13 @@ export default async function Layout({
     <div>
       {/** page header. */}
       <Header />
-      <Separator className="dark:bg-neutral-200" />
+      <Separator className="dark:bg-neutral-100" />
 
       {/** page content. */}
-      <div>{children}</div>
+      <div className="py-4">{children}</div>
 
       {/** navigation. */}
-      <div className="fixed bottom-0 left-0 grid h-16 w-full grid-cols-3 items-center rounded-t-lg bg-neutral-200/80 text-neutral-900">
+      <div className="fixed bottom-0 left-0 grid h-16 w-full grid-cols-3 items-center rounded-t-lg bg-neutral-100 text-neutral-900">
         <Link
           className="col-span-1 flex items-center justify-center"
           href={"/contributions"}
@@ -48,8 +48,8 @@ export default async function Layout({
           <p className="flex text-sm font-extrabold tracking-tighter dark:text-neutral-800">
             {"< titipin.aja />"}
           </p>
-          <Badge className="flex h-fit gap-1 bg-purple-400 py-0 text-xs font-normal lowercase hover:bg-purple-500">
-            Home
+          <Badge className="flex h-fit gap-1 bg-blue-400 py-0 text-xs font-normal lowercase hover:bg-blue-500">
+            explore
           </Badge>
         </Link>
         <div className="col-span-1 flex items-center justify-center">
