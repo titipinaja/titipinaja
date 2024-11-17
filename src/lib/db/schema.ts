@@ -29,3 +29,5 @@ export const addListingSchema = z
       path: ["lastReceiveAt"],
     },
   );
+
+export const deleteListingSchema = z.object({ id: z.number() });

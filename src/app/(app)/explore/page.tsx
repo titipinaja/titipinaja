@@ -1,4 +1,5 @@
 import { getListings } from "@/lib/db/listings";
+import { getCurrentSession } from "@/lib/session";
 import { toLocalDay } from "@/lib/utils";
 import {
   Banknote,
@@ -9,6 +10,7 @@ import {
   MapPin,
 } from "lucide-react";
 import AddListingButton from "./components/add-listing-button";
+import DeleteListingButton from "./components/delete-listing-button";
 import WhatsAppButton from "./components/whatsapp-button";
 
 export default async function Page({
@@ -16,6 +18,7 @@ export default async function Page({
 }: {
   searchParams?: { login: string };
 }) {
+  const { user } = await getCurrentSession();
   const listings = await getListings();
 
   return (
@@ -32,7 +35,12 @@ export default async function Page({
             key={listing.id}
             className="grid gap-y-4 rounded-md border bg-neutral-900 p-4 text-xs"
           >
-            <h3 className="text-sm font-bold">Felix Arjuna</h3>
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold">Felix Arjuna</h3>
+              {listing.userId === user?.id ? (
+                <DeleteListingButton id={listing.id} />
+              ) : null}
+            </div>
             <div className="mt-2 grid grid-cols-2 gap-y-4">
               <div className="col-span-1 flex flex-col gap-x-2 gap-y-1">
                 <div className="flex items-center gap-2">

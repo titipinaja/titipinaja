@@ -2,10 +2,12 @@
 
 import { db } from "@/server/db";
 import { listings } from "@/server/db/schema";
+import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createServerAction, ZSAError } from "zsa";
 import { getCurrentSession } from "../session";
-import { addListingSchema } from "./schema";
+import { addListingSchema, deleteListingSchema } from "./schema";
 
 export const getListings = async () => {
   const listings = await db.query.listings.findMany({ with: { user: true } });
@@ -31,4 +33,12 @@ export const addListing = createServerAction()
     });
 
     redirect("/explore");
+  });
+
+export const deleteListing = createServerAction()
+  .input(deleteListingSchema)
+  .handler(async ({ input }) => {
+    await db.delete(listings).where(eq(listings.id, input.id));
+
+    revalidatePath("/explore");
   });

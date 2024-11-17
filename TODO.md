@@ -20,5 +20,6 @@ create web application
   - [x] add logic to verify arrive departure, arrival and last receive date
 - [ ] create explore page for guests
   - [x] create listing card
+  - [x] enable user delete their own listing
   - [ ] show warning for logged in users that have a listing and no whatsapp number provided
-  - [ ] enable user to edit and delete their own listing
+  - [ ] enable user edit their own listing
