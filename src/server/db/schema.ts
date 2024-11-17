@@ -29,6 +29,8 @@ export const listings = createTable("listing", {
   userId: varchar("user_id", { length: 255 }).notNull(),
   baggage: integer("baggage").notNull(),
   price: integer("price").notNull(),
+  from: varchar("from").notNull(),
+  to: varchar("to").notNull(),
   lastReceiveAt: varchar("last_receive_at", { length: 256 }).notNull(),
   departureAt: varchar("departure_at", { length: 256 }).notNull(),
   arriveAt: varchar("arrive_at", { length: 256 }).notNull(),

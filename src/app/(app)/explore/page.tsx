@@ -18,7 +18,15 @@ export default async function Page({
 
       {/** listings. */}
       {listings.length > 0 ? (
-        listings.map((listing) => <div key={listing.id}>{listing.baggage}</div>)
+        listings.map((listing) => (
+          <div key={listing.id}>
+            <div>
+              <p>{listing.departureAt}</p>
+              <p>{listing.arriveAt}</p>
+            </div>
+            <p>{listing.baggage}</p>
+          </div>
+        ))
       ) : (
         <div className="flex items-center justify-center gap-x-2 rounded-md border border-dashed border-neutral-100 py-6">
           <Globe2 className="h-5 w-5" />

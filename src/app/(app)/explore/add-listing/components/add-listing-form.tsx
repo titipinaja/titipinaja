@@ -191,6 +191,34 @@ export default function AddListingForm() {
 
         <FormField
           control={form.control}
+          name="from"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>From</FormLabel>
+              <FormControl>
+                <Input placeholder="Aachen" className="text-sm" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="to"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>To</FormLabel>
+              <FormControl>
+                <Input placeholder="Jakarta" className="text-sm" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
           name="baggage"
           render={({ field }) => (
             <FormItem>

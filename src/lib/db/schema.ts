@@ -4,6 +4,8 @@ export const addListingSchema = z
   .object({
     baggage: z.coerce.number().min(1),
     price: z.coerce.number().min(1),
+    from: z.string().min(1, "Please enter a valid city name."),
+    to: z.string().min(1, "Please enter a valid city name."),
     lastReceiveAt: z.date(),
     departureAt: z.date(),
     arriveAt: z.date(),
