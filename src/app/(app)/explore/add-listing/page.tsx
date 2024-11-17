@@ -8,8 +8,8 @@ export default async function Page() {
   if (session === null) redirect("/auth/login");
 
   return (
-    <div>
-      <h3 className="text-base font-bold">Add listing</h3>
+    <div className="grid gap-4">
+      <h3 className="text-base font-bold uppercase">Add listing</h3>
       <AddListingForm />
     </div>
   );
