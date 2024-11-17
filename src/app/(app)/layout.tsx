@@ -13,19 +13,23 @@ import {
 } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { getCurrentSession } from "@/lib/session";
+import { getInitials } from "@/lib/utils";
 import { Globe2, User, X } from "lucide-react";
 import Link from "next/link";
+import LoginButton from "../auth/components/login-button";
 import Header from "./components/header";
 
 export default async function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const { user, session } = await getCurrentSession();
-  console.log(user, session);
+  const { user } = await getCurrentSession();
 
   return (
-    <div>
+    <div className="text-sm">
       {/** page header. */}
       <Header />
       <Separator className="dark:bg-neutral-100" />
@@ -65,50 +69,60 @@ export default async function Layout({
               <DrawerHeader className="flex flex-col gap-y-8">
                 <DrawerTitle>User Information</DrawerTitle>
                 <DrawerDescription className="hidden" />
-                <div className="flex flex-col gap-2 text-left">
-                  <div className="flex justify-center">
-                    {/* <Avatar className="h-12 w-12">
-                      <AvatarImage src={user?.picture} />
-                      <AvatarFallback>
-                        {getInitials(user?.name ?? "")}
-                      </AvatarFallback>
-                    </Avatar> */}
-                  </div>
 
-                  {/* <div>
-                    <Label>Name</Label>
-                    <Input
-                      type="name"
-                      defaultValue={user?.name}
-                      className="dark:border-neutral-100"
-                      autoComplete="email"
-                      disabled
-                    />
+                {user !== null ? (
+                  <div className="flex flex-col gap-2 text-left">
+                    <div className="flex justify-center">
+                      <Avatar className="h-12 w-12">
+                        <AvatarImage src={user?.picture ?? undefined} />
+                        <AvatarFallback>
+                          {getInitials(user.name)}
+                        </AvatarFallback>
+                      </Avatar>
+                    </div>
+
+                    <div className="grid gap-2">
+                      <Label>Name</Label>
+                      <Input
+                        type="name"
+                        defaultValue={user.name}
+                        className="font-mono text-sm dark:border-neutral-100"
+                        autoComplete="email"
+                        disabled
+                      />
+                    </div>
+
+                    <div className="grid gap-2">
+                      <Label>Email</Label>
+                      <Input
+                        type="email"
+                        defaultValue={user?.email}
+                        className="font-mono text-sm dark:border-neutral-100"
+                        autoComplete="email"
+                        disabled
+                      />
+                    </div>
                   </div>
+                ) : (
                   <div>
-                    <Label>Email</Label>
-                    <Input
-                      type="email"
-                      defaultValue={user?.email}
-                      className="dark:border-neutral-100"
-                      autoComplete="email"
-                      disabled
-                    />
-                  </div> */}
-                </div>
+                    <p className="font-mono text-sm">
+                      No user information found. Please kindly login.
+                    </p>
+                  </div>
+                )}
               </DrawerHeader>
 
-              <LogoutButton />
-
-              <DrawerFooter>
+              <DrawerFooter className="flex flex-row items-center justify-center">
                 <DrawerClose
                   className={buttonVariants({
-                    size: "icon",
                     variant: "outline",
                   })}
                 >
                   <X className="h-4 w-4" />
+                  <p>Close</p>
                 </DrawerClose>
+
+                {user === null ? <LoginButton /> : <LogoutButton />}
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
