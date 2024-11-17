@@ -26,7 +26,7 @@ export const listingStatusEnum = pgEnum("listing_status", [
 
 export const listings = createTable("listing", {
   id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
-  userId: varchar("user_id", { length: 255 }).notNull(),
+  userId: varchar("user_id", { length: 255 }).references(() => users.id),
   baggage: integer("baggage").notNull(),
   price: integer("price").notNull(),
   from: varchar("from").notNull(),
@@ -43,6 +43,13 @@ export const listings = createTable("listing", {
     () => new Date(),
   ),
 });
+
+export const listingsRelations = relations(listings, ({ one }) => ({
+  user: one(users, {
+    fields: [listings.userId],
+    references: [users.id],
+  }),
+}));
 
 export const users = createTable("user", {
   id: varchar("id", { length: 255 })

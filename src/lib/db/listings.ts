@@ -8,7 +8,7 @@ import { getCurrentSession } from "../session";
 import { addListingSchema } from "./schema";
 
 export const getListings = async () => {
-  const listings = await db.query.listings.findMany();
+  const listings = await db.query.listings.findMany({ with: { user: true } });
   return listings;
 };
 

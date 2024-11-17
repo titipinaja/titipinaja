@@ -19,6 +19,6 @@ create web application
   - [x] fix server action
   - [x] add logic to verify arrive departure, arrival and last receive date
 - [ ] create explore page for guests
+  - [x] create listing card
   - [ ] show warning for logged in users that have a listing and no whatsapp number provided
-  - [ ] create listing card
   - [ ] enable user to edit and delete their own listing
