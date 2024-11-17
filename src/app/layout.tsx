@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import "@/styles/globals.css";
 
 import { GeistMono } from "geist/font/mono";
@@ -17,8 +18,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="dark min-h-screen bg-neutral-950 font-mono">
+      <body className="dark mx-auto min-h-screen w-11/12 bg-neutral-950 py-4 font-mono">
         {children}
+        <Toaster />
       </body>
     </html>
   );

@@ -13,5 +13,6 @@ create web application
 
 - [x] create home page
 - [x] database schema
+- [x] add authentication feature
 - [ ] create explore page for guests
 - [ ] create manage page for users

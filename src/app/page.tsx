@@ -1,7 +1,9 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 
 export type Arcs = {
   readonly order: number;
@@ -408,8 +410,10 @@ export default function HomePage() {
     },
   ];
 
+  const router = useRouter();
+
   return (
-    <main className="relative mx-auto h-screen w-10/12 py-32">
+    <main className="relative py-32">
       <div className="grid gap-4">
         <motion.div
           initial={{
@@ -424,16 +428,16 @@ export default function HomePage() {
             duration: 1,
           }}
         >
-          <h2 className="text-center font-mono text-xl font-bold text-neutral-900 md:text-4xl dark:text-neutral-200">
+          <h2 className="text-center font-mono text-xl font-bold text-neutral-900 dark:text-neutral-200 md:text-3xl">
             {"<"} titipin.aja {"/>"}
           </h2>
-          <p className="mx-auto mt-2 max-w-md text-center font-sans text-base font-normal text-neutral-700 md:text-lg dark:text-neutral-200">
+          <p className="mx-auto mt-2 max-w-md text-center font-sans text-base font-normal text-neutral-700 dark:text-neutral-200 md:text-lg">
             A place where we can help our peers and saving our planet at the
             same time.
           </p>
         </motion.div>
 
-        <div className="relative h-80">
+        <div className="relative h-80 md:h-[450px]">
           <World data={sampleArcs} globeConfig={globeConfig} />
 
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-20 w-full select-none bg-gradient-to-b from-transparent to-white dark:to-neutral-950" />
@@ -454,7 +458,12 @@ export default function HomePage() {
           }}
           className="mx-auto mt-8 w-fit"
         >
-          <Button className="mx-auto w-fit">Explore</Button>
+          <Button
+            className="mx-auto w-fit"
+            onClick={() => router.push("explore")}
+          >
+            Explore
+          </Button>
         </motion.div>
       </div>
     </main>
