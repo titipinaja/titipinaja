@@ -8,6 +8,13 @@
       "when": 1731837665157,
       "tag": "0000_military_zarek",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1731862886208,
+      "tag": "0001_magenta_maverick",
+      "breakpoints": true
     }
   ]
 }

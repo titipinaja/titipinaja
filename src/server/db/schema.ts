@@ -1,7 +1,7 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
-import { relations, sql } from "drizzle-orm";
+import { type InferSelectModel, relations, sql } from "drizzle-orm";
 import {
   index,
   integer,
@@ -26,6 +26,7 @@ export const listingStatusEnum = pgEnum("listing_status", [
 
 export const listings = createTable("listing", {
   id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
+  userId: varchar("user_id", { length: 255 }).notNull(),
   baggage: integer("baggage"),
   price: integer("price"),
   lastReceiveAt: varchar("last_receive_at", { length: 256 }),
@@ -61,6 +62,7 @@ export const users = createTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   session: many(sessions),
+  listings: many(listings),
 }));
 
 export const sessions = createTable(
@@ -90,3 +92,7 @@ export const passwordResetToken = createTable("password_reset_token", {
     withTimezone: true,
   }).notNull(),
 });
+
+export type Listing = InferSelectModel<typeof listings>;
+export type User = InferSelectModel<typeof users>;
+export type Session = InferSelectModel<typeof sessions>;

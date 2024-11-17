@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { getListings } from "@/lib/db/listings";
 import { Plus } from "lucide-react";
-import { getListings } from "./actions";
 
 export default async function Explore() {
   const listings = await getListings();

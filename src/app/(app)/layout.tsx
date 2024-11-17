@@ -12,6 +12,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
+
+import { getCurrentSession } from "@/lib/session";
 import { Globe2, User, X } from "lucide-react";
 import Link from "next/link";
 import Header from "./components/header";
@@ -19,7 +21,8 @@ import Header from "./components/header";
 export default async function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  // const user = await getUser();
+  const { user, session } = await getCurrentSession();
+  console.log(user, session);
 
   return (
     <div>
