@@ -456,7 +456,7 @@ export default function HomePage() {
             duration: 1,
             delay: 1.5,
           }}
-          className="mx-auto mt-8 w-fit"
+          className="mx-auto mt-4 w-fit"
         >
           <Button
             className="mx-auto w-fit"
