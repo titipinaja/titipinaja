@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -189,7 +190,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
         return (e as { arcAlt: number }).arcAlt * 1;
       })
       .arcStroke((_) => {
-        return [0.32, 0.28, 0.3][Math.round(Math.random() * 2)];
+        return [0.32, 0.28, 0.3][Math.round(Math.random() * 2)] ?? null;
       })
       .arcDashLength(defaultProps.arcLength)
       .arcDashInitialGap((e) => (e as { order: number }).order * 1)
@@ -205,7 +206,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
     globeRef.current
       .ringsData([])
-      .ringColor((e: unknown) => (t: unknown) => e.color(t))
+      .ringColor((e: any) => (t: unknown) => e.color(t))
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
       .ringRepeatPeriod(
