@@ -413,7 +413,7 @@ export default function HomePage() {
   const router = useRouter();
 
   return (
-    <main className="relative py-32">
+    <main className="relative pt-10 sm:py-32">
       <div className="grid gap-4">
         <motion.div
           initial={{
