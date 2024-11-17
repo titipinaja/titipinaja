@@ -58,7 +58,7 @@ export default function AddListingForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="grid grid-cols-2 gap-4"
+        className="grid grid-cols-2 gap-4 pb-16"
       >
         <FormField
           control={form.control}
