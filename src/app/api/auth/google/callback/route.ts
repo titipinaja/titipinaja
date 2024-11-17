@@ -65,7 +65,7 @@ export async function GET(request: Request): Promise<Response> {
     return new NextResponse(null, {
       status: 302,
       headers: {
-        Location: "/explore",
+        Location: "/explore?login=successful",
       },
     });
   }
@@ -83,7 +83,7 @@ export async function GET(request: Request): Promise<Response> {
   return new NextResponse(null, {
     status: 302,
     headers: {
-      Location: "/explore",
+      Location: "/explore?login=successful",
     },
   });
 }

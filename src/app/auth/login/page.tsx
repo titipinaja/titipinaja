@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components/login-form";
+import { LoginForm } from "@/app/auth/components/login-form";
 import { z } from "zod";
 
 export const signInSchema = z.object({

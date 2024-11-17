@@ -1,4 +1,4 @@
-import { type ClaimSchema } from "@/app/auth/login/google/callback/route";
+import { type ClaimSchema } from "@/app/api/auth/google/callback/route";
 import { db } from "@/server/db";
 import { users } from "@/server/db/schema";
 import { eq } from "drizzle-orm";
