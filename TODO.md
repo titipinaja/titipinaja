@@ -21,5 +21,5 @@ create web application
 - [ ] create explore page for guests
   - [x] create listing card
   - [x] enable user delete their own listing
-  - [ ] show warning for logged in users that have a listing and no whatsapp number provided
+  - [x] show warning for logged in users that have a listing and no whatsapp number provided
   - [ ] enable user edit their own listing

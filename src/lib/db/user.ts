@@ -1,7 +1,12 @@
+"use server";
+
 import { type ClaimSchema } from "@/app/api/auth/google/callback/route";
 import { db } from "@/server/db";
 import { users } from "@/server/db/schema";
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
+import { createServerAction } from "zsa";
+import { updateWhatsappNumberSchema } from "./schema";
 
 /** method to get user from email. */
 export async function getUserFromEmail(email: string) {
@@ -19,3 +24,15 @@ export async function createUser(claim: ClaimSchema) {
     })
     .returning();
 }
+
+/** method to update user whatsapp number. */
+export const updateWhatsappNumber = createServerAction()
+  .input(updateWhatsappNumberSchema)
+  .handler(async ({ input }) => {
+    await db
+      .update(users)
+      .set({ whatsappNumber: input.whatsappNumber })
+      .where(eq(users.id, input.userId));
+
+    revalidatePath("/explore");
+  });

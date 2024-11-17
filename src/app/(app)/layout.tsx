@@ -18,10 +18,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getCurrentSession } from "@/lib/session";
 import { getInitials } from "@/lib/utils";
-import { Globe2, User, X } from "lucide-react";
+import {
+  CircleCheck,
+  Globe2,
+  Info,
+  TriangleAlert,
+  User,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import LoginButton from "../auth/components/login-button";
 import Header from "./components/header";
+import UpdateWhatsAppForm from "./components/update-whatsapp-form";
 
 export default async function Layout({
   children,
@@ -61,17 +69,31 @@ export default async function Layout({
         </Link>
         <div className="col-span-1 flex items-center justify-center">
           <Drawer>
-            <DrawerTrigger className="flex flex-col items-center">
+            <DrawerTrigger className="relative flex flex-col items-center">
               <User className="h-5 w-5" />
               <p className="text-xs">account</p>
+              {user?.whatsappNumber === null ? (
+                <TriangleAlert className="absolute -top-1 right-0 h-4 w-4 text-yellow-500" />
+              ) : (
+                <CircleCheck className="absolute -top-1 right-0 h-4 w-4 text-green-500" />
+              )}
             </DrawerTrigger>
             <DrawerContent className="px-8" aria-describedby="user-information">
-              <DrawerHeader className="flex flex-col gap-y-8">
+              <DrawerHeader className="flex flex-col gap-y-8 pb-20">
                 <DrawerTitle>User Information</DrawerTitle>
                 <DrawerDescription className="hidden" />
 
                 {user !== null ? (
-                  <div className="flex flex-col gap-2 text-left">
+                  <div className="flex flex-col gap-4 text-left">
+                    <div className="flex items-center gap-x-2 rounded-md border border-blue-400 px-4 py-3 text-blue-300">
+                      <Info className="w-16" />
+                      <p className="font-mono text-xs">
+                        You haven&apos;t provided your WhatsApp number. Please
+                        complete it, so that people could contact you from your
+                        available listing.
+                      </p>
+                    </div>
+
                     <div className="flex justify-center">
                       <Avatar className="h-12 w-12">
                         <AvatarImage src={user?.picture ?? undefined} />
@@ -82,11 +104,11 @@ export default async function Layout({
                     </div>
 
                     <div className="grid gap-2">
-                      <Label>Name</Label>
+                      <Label className="text-sm">Name</Label>
                       <Input
                         type="name"
                         defaultValue={user.name}
-                        className="font-mono text-sm dark:border-neutral-100"
+                        className="font-mono text-xs dark:border-neutral-100"
                         autoComplete="email"
                         disabled
                       />
@@ -97,11 +119,16 @@ export default async function Layout({
                       <Input
                         type="email"
                         defaultValue={user?.email}
-                        className="font-mono text-sm dark:border-neutral-100"
+                        className="font-mono text-xs dark:border-neutral-100"
                         autoComplete="email"
                         disabled
                       />
                     </div>
+
+                    <UpdateWhatsAppForm
+                      userId={user.id}
+                      whatsappNumber={user.whatsappNumber}
+                    />
                   </div>
                 ) : (
                   <div>

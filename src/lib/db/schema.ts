@@ -31,3 +31,13 @@ export const addListingSchema = z
   );
 
 export const deleteListingSchema = z.object({ id: z.number() });
+
+export const updateWhatsappNumberSchema = z.object({
+  userId: z.string(),
+  whatsappNumber: z
+    .string()
+    .regex(
+      /^(\+|00)?[1-9]\d{0,3}[\s.-]?\(?[1-9]\d{0,3}\)?[\s.-]?\d{1,4}[\s.-]?\d{1,4}[\s.-]?\d{1,9}$/,
+      "Invalid phone number format",
+    ),
+});
