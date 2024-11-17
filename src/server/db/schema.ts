@@ -27,11 +27,11 @@ export const listingStatusEnum = pgEnum("listing_status", [
 export const listings = createTable("listing", {
   id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
   userId: varchar("user_id", { length: 255 }).notNull(),
-  baggage: integer("baggage"),
-  price: integer("price"),
-  lastReceiveAt: varchar("last_receive_at", { length: 256 }),
-  departureAt: varchar("departure_at", { length: 256 }),
-  arriveAt: varchar("arrive_at", { length: 256 }),
+  baggage: integer("baggage").notNull(),
+  price: integer("price").notNull(),
+  lastReceiveAt: varchar("last_receive_at", { length: 256 }).notNull(),
+  departureAt: varchar("departure_at", { length: 256 }).notNull(),
+  arriveAt: varchar("arrive_at", { length: 256 }).notNull(),
   termsAndConditions: varchar("terms_and_conditions"),
   status: listingStatusEnum("listing_status").default("available"),
   createdAt: timestamp("created_at", { withTimezone: true })
@@ -47,7 +47,7 @@ export const users = createTable("user", {
     .notNull()
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  name: varchar("name", { length: 255 }),
+  name: varchar("name", { length: 255 }).notNull(),
   username: varchar("username"),
   hashedPassword: varchar("hashed_password"),
   image: varchar("image", { length: 255 }),
@@ -58,6 +58,7 @@ export const users = createTable("user", {
   }).default(sql`CURRENT_TIMESTAMP`),
   session: varchar("session").references(() => sessions.id),
   picture: varchar("picture", { length: 255 }),
+  whatsappNumber: varchar("whatsapp_number", { length: 255 }),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({

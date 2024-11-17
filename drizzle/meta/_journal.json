@@ -15,6 +15,13 @@
       "when": 1731862886208,
       "tag": "0001_magenta_maverick",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1731867751479,
+      "tag": "0002_bouncy_mindworm",
+      "breakpoints": true
     }
   ]
 }
