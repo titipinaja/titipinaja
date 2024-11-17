@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
+import React from "react";
 
 export default function AddListingButton({
   login,
@@ -13,7 +14,9 @@ export default function AddListingButton({
   const router = useRouter();
   const { toast } = useToast();
 
-  if (login === "successful") toast({ title: "✅ Login successful." });
+  React.useEffect(() => {
+    if (login === "successful") toast({ title: "✅ Login successful." });
+  }, [login, toast]);
 
   return (
     <Button
