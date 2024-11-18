@@ -36,7 +36,7 @@ export default async function Page({
             className="grid gap-y-4 rounded-md border bg-neutral-900 p-4 text-xs"
           >
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-bold">Felix Arjuna</h3>
+              <h3 className="text-sm font-bold">{listing.user?.name}</h3>
               {listing.userId === user?.id ? (
                 <DeleteListingButton id={listing.id} />
               ) : null}

@@ -18,14 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getCurrentSession } from "@/lib/session";
 import { getInitials } from "@/lib/utils";
-import {
-  CircleCheck,
-  Globe2,
-  Info,
-  TriangleAlert,
-  User,
-  X,
-} from "lucide-react";
+import { CircleCheck, Globe2, TriangleAlert, User, X } from "lucide-react";
 import { type Viewport } from "next";
 import Link from "next/link";
 import LoginButton from "../auth/components/login-button";
@@ -80,27 +73,29 @@ export default async function Layout({
             <DrawerTrigger className="relative flex flex-col items-center">
               <User className="h-5 w-5" />
               <p className="text-xs">account</p>
-              {user?.whatsappNumber === null ? (
+              {user === null ? null : user?.whatsappNumber === null ? (
                 <TriangleAlert className="absolute -top-1 right-0 h-4 w-4 text-yellow-500" />
               ) : (
                 <CircleCheck className="absolute -top-1 right-0 h-4 w-4 text-green-500" />
               )}
             </DrawerTrigger>
             <DrawerContent className="px-8" aria-describedby="user-information">
-              <DrawerHeader className="flex flex-col gap-y-8 pb-20">
+              <DrawerHeader className="flex flex-col gap-y-8 pb-4">
                 <DrawerTitle>User Information</DrawerTitle>
                 <DrawerDescription className="hidden" />
 
                 {user !== null ? (
                   <div className="flex flex-col gap-4 text-left">
-                    <div className="flex items-center gap-x-2 rounded-md border border-blue-400 px-4 py-3 text-blue-300">
-                      <Info className="w-16" />
-                      <p className="font-mono text-xs">
-                        You haven&apos;t provided your WhatsApp number. Please
-                        complete it, so that people could contact you from your
-                        available listing.
-                      </p>
-                    </div>
+                    {user.whatsappNumber !== null ? (
+                      <div className="flex items-center gap-x-2 rounded-md border border-yellow-400 px-4 py-3 text-yellow-300">
+                        <TriangleAlert className="w-16" />
+                        <p className="font-mono text-xs">
+                          You haven&apos;t provided your WhatsApp number. Please
+                          provide your valid WhatsApp number so that people
+                          could contact you.
+                        </p>
+                      </div>
+                    ) : null}
 
                     <div className="flex justify-center">
                       <Avatar className="h-12 w-12">

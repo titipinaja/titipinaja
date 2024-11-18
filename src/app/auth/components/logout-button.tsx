@@ -10,12 +10,13 @@ export default function LogoutButton() {
 
   return (
     <Button
-      className="flex w-fit gap-1 self-end bg-blue-400"
+      className="flex w-fit gap-1 self-end"
       onClick={async () => {
         const { success } = await logOut();
         if (success) toast({ title: "Logout successful." });
       }}
       size={"default"}
+      variant={"destructive"}
     >
       <LogOut className="h-4 w-4" />
       <p>Logout</p>
