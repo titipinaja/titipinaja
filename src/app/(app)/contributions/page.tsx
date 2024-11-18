@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Page() {
   return (
     <div className="min-h-svh font-sans">
-      <h1 className="font-mono text-lg font-bold">Do you know?</h1>
+      <h1 className="font-mono text-lg font-bold">Fun fact</h1>
       <p className="mt-2">
         A kilogram of airline luggage can have a significant impact on carbon
         dioxide emissions during air travel. On average, each kilogram of weight
@@ -15,16 +15,17 @@ export default function Page() {
         international flights, a 20 kg piece of checked luggage would contribute
         approximately 140 kg of CO2 emissions for the round trip [2]. This
         translates to about 7 kg of CO2 per kilogram of luggage for this
-        specific route. The impact of reducing luggage weight becomes even more
-        apparent when compared to other carbon reduction strategies. For
-        instance, the effect of not carrying this 20 kg of checked baggage (140
-        kg CO2) is about 2.6 times the annual reduction from eliminating food
-        waste at home and in restaurants (54 kg CO2), and approximately 5.4
-        times the annual reduction from using an air conditioner for one hour
-        less per day (26 kg CO2 per year) [2]. These comparisons highlight how
-        reducing luggage weight can be an effective way for travelers to
-        decrease their carbon footprint, especially on long-haul flights like
-        those between Germany and Indonesia.
+        specific route.
+      </p>
+      <p className="mt-2">
+        By fully using your baggage allowance, we&apos;re ensuring that the CO2
+        emissions associated with your luggage are not wasted. This approach is
+        particularly impactful for long-haul flights, such as those between
+        Germany and Indonesia, where the potential for emissions reduction is
+        greater. Remember, every kilogram counts. By making conscious packing
+        decisions, travelers can play a significant role in reducing their
+        carbon footprint and contributing to more sustainable air travel
+        practices.
       </p>
 
       <div className="font flex flex-col pb-16">
