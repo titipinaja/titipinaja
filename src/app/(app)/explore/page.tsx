@@ -42,7 +42,7 @@ export default async function Page({
           {listings.map((listing) => (
             <div
               key={listing.id}
-              className="grid gap-y-4 rounded-md border bg-neutral-900 px-6 py-4 text-xs"
+              className="grid gap-y-4 rounded-md border bg-neutral-900 px-4 py-4 text-xs"
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold">{listing.user?.name}</h3>
@@ -55,8 +55,8 @@ export default async function Page({
                   Flight information
                 </Badge>
 
-                <div className="col-span-2 flex justify-between">
-                  <div className="col-span-1 flex flex-col gap-x-2 gap-y-1">
+                <div className="col-span-2 flex">
+                  <div className="flex w-1/2 flex-col gap-x-2 gap-y-1">
                     <div className="flex items-center gap-2">
                       <TooltipProvider>
                         <Tooltip>
@@ -79,10 +79,10 @@ export default async function Page({
 
                   <Separator
                     orientation="vertical"
-                    className="bg-neutral-600"
+                    className="mx-4 bg-neutral-600"
                   />
 
-                  <div className="col-span-1 flex flex-col gap-x-2 gap-y-1">
+                  <div className="flex w-1/2 flex-col gap-x-2 gap-y-1">
                     <div className="flex items-center gap-2">
                       <TooltipProvider>
                         <Tooltip>
@@ -109,8 +109,8 @@ export default async function Page({
                 </Badge>
 
                 <div className="col-span-2 grid grid-cols-2 gap-y-1">
-                  <div className="col-span-2 flex justify-between">
-                    <div className="flex items-center gap-x-2">
+                  <div className="col-span-2 flex">
+                    <div className="flex w-1/2 items-center gap-x-2">
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger>
@@ -125,37 +125,39 @@ export default async function Page({
                     </div>
                     <Separator
                       orientation="vertical"
-                      className="bg-neutral-600"
+                      className="mx-4 bg-neutral-600"
                     />
-                    <div className="flex items-center gap-x-2">
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <Luggage className="h-4 w-4" />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Total available luggage</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                      <p>{listing.baggage} kg</p>
-                    </div>
-                    <Separator
-                      orientation="vertical"
-                      className="bg-neutral-600"
-                    />
-                    <div className="flex items-center gap-x-2">
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <Banknote className="h-4 w-4" />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Price in €/kg</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                      <p>{listing.price} €</p>
+                    <div className="flex w-1/2">
+                      <div className="flex w-1/2 items-center gap-x-1">
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <Luggage className="h-4 w-4" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Total available luggage</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <p>{listing.baggage} kg</p>
+                      </div>
+                      <Separator
+                        orientation="vertical"
+                        className="mx-4 bg-neutral-600"
+                      />
+                      <div className="flex w-1/2 items-center gap-x-1">
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <Banknote className="h-4 w-4" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Price in €/kg</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                        <p>{listing.price} €</p>
+                      </div>
                     </div>
                   </div>
                 </div>
