@@ -29,6 +29,7 @@ export default function DeleteListingButton({ id }: { id: number }) {
       variant={"destructive"}
       disabled={isPending}
       onClick={() => execute({ id })}
+      className="h-6 w-6"
     >
       {isPending ? (
         <Loader2 className="h-4 w-4 animate-spin" />

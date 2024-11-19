@@ -27,7 +27,7 @@ export const addListing = createServerAction()
     await db.insert(listings).values({
       ...input,
       departureAt: input.departureAt.toISOString(),
-      arriveAt: input.departureAt.toISOString(),
+      arriveAt: input.arriveAt.toISOString(),
       lastReceiveAt: input.lastReceiveAt.toISOString(),
       userId: user.id,
     });
