@@ -38,7 +38,7 @@ export default async function Page({
 
       {/** listings. */}
       {listings.length > 0 ? (
-        <div className="grid md:grid-cols-5">
+        <div className="grid gap-4 md:grid-cols-5">
           {listings.map((listing) => (
             <div
               key={listing.id}
@@ -46,20 +46,23 @@ export default async function Page({
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-bold">{listing.user?.name}</h3>
-                <Badge
-                  className={cn("font-mono", {
-                    "bg-green-400": listing.status === "available",
-                    "bg-red-400": listing.status === "fully_booked",
-                  })}
-                >
-                  {listing.status === "fully_booked"
-                    ? "booked out"
-                    : listing.status}
-                </Badge>
 
-                {listing.userId === user?.id ? (
-                  <DeleteListingButton id={listing.id} />
-                ) : null}
+                <div className="flex items-center gap-x-2">
+                  <Badge
+                    className={cn("font-mono", {
+                      "bg-green-400": listing.status === "available",
+                      "bg-red-400": listing.status === "fully_booked",
+                    })}
+                  >
+                    {listing.status === "fully_booked"
+                      ? "booked out"
+                      : listing.status}
+                  </Badge>
+
+                  {listing.userId === user?.id ? (
+                    <DeleteListingButton id={listing.id} />
+                  ) : null}
+                </div>
               </div>
               <div className="mt-2 grid grid-cols-2 gap-y-4">
                 <Badge className="col-span-2 w-fit bg-blue-400 font-mono hover:bg-blue-400/80">
