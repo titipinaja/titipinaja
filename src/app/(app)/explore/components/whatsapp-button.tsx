@@ -1,28 +1,36 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { RiWhatsappLine } from "@remixicon/react";
 import { useRouter } from "next/navigation";
+import React from "react";
+
+interface IWhatsAppButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+  readonly number: string | null | undefined;
+}
 
 export default function WhatsAppButton({
   number,
-}: {
-  number: string | null | undefined;
-}) {
+  className,
+}: IWhatsAppButtonProps) {
   const router = useRouter();
 
   return (
     <Button
       size={"sm"}
-      variant={"ghost"}
-      className="flex w-full items-center justify-center gap-x-2 rounded-md border border-green-400 px-2 py-1 text-green-400"
+      variant={"default"}
+      className={cn(
+        "py-1t flex w-full items-center justify-center gap-x-1 rounded-md border bg-blue-400 px-2 text-neutral-900 hover:bg-blue-400/80",
+        className,
+      )}
       onClick={() => {
         router.push(`https://wa.me/${number}`);
       }}
       disabled={!number}
     >
       <RiWhatsappLine className="h-5 w-5" />
-      <p className="font-mono">Chat via WhatsApp</p>
+      <p className="font-mono">Contact</p>
     </Button>
   );
 }

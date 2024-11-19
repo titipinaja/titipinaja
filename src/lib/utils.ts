@@ -17,5 +17,5 @@ export function toLocalDay(date: string) {
   return DateTime.fromISO(date)
     .setZone("Europe/Berlin")
     .setLocale("id-ID")
-    .toFormat("dd MMM. yyyy");
+    .toFormat("dd MMMM yyyy");
 }
