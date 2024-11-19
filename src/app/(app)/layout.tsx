@@ -1,29 +1,11 @@
-import LogoutButton from "@/app/auth/components/logout-button";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { getCurrentSession } from "@/lib/session";
-import { getInitials } from "@/lib/utils";
-import { CircleCheck, Globe2, TriangleAlert, User, X } from "lucide-react";
+import { CircleCheck, Globe2, TriangleAlert, User } from "lucide-react";
 import { type Viewport } from "next";
 import Link from "next/link";
-import LoginButton from "../auth/components/login-button";
 import Header from "./components/header";
-import UpdateWhatsAppForm from "./components/update-whatsapp-form";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -69,93 +51,18 @@ export default async function Layout({
           </Badge>
         </Link>
         <div className="col-span-1 flex items-center justify-center">
-          <Drawer>
-            <DrawerTrigger className="relative flex flex-col items-center">
-              <User className="h-5 w-5" />
-              <p className="text-xs">account</p>
-              {user === null ? null : user?.whatsappNumber === null ? (
-                <TriangleAlert className="absolute -top-1 right-0 h-4 w-4 text-yellow-500" />
-              ) : (
-                <CircleCheck className="absolute -top-1 right-0 h-4 w-4 text-green-500" />
-              )}
-            </DrawerTrigger>
-            <DrawerContent className="px-8" aria-describedby="user-information">
-              <DrawerHeader className="flex flex-col gap-y-8 pb-4">
-                <DrawerTitle>User Information</DrawerTitle>
-                <DrawerDescription className="hidden" />
-
-                {user !== null ? (
-                  <div className="flex flex-col gap-4 text-left">
-                    {user.whatsappNumber !== null ? (
-                      <div className="flex items-center gap-x-2 rounded-md border border-yellow-400 px-4 py-3 text-yellow-300">
-                        <TriangleAlert className="w-16" />
-                        <p className="font-mono text-xs">
-                          You haven&apos;t provided your WhatsApp number. Please
-                          provide your valid WhatsApp number so that people
-                          could contact you.
-                        </p>
-                      </div>
-                    ) : null}
-
-                    <div className="flex justify-center">
-                      <Avatar className="h-12 w-12">
-                        <AvatarImage src={user?.picture ?? undefined} />
-                        <AvatarFallback>
-                          {getInitials(user.name)}
-                        </AvatarFallback>
-                      </Avatar>
-                    </div>
-
-                    <div className="grid gap-2">
-                      <Label className="text-sm">Name</Label>
-                      <Input
-                        type="name"
-                        defaultValue={user.name}
-                        className="font-mono text-xs dark:border-neutral-100"
-                        autoComplete="email"
-                        disabled
-                      />
-                    </div>
-
-                    <div className="grid gap-2">
-                      <Label>Email</Label>
-                      <Input
-                        type="email"
-                        defaultValue={user?.email}
-                        className="font-mono text-xs dark:border-neutral-100"
-                        autoComplete="email"
-                        disabled
-                      />
-                    </div>
-
-                    <UpdateWhatsAppForm
-                      userId={user.id}
-                      whatsappNumber={user.whatsappNumber}
-                    />
-                  </div>
-                ) : (
-                  <div>
-                    <p className="font-mono text-sm">
-                      No user information found. Please kindly login.
-                    </p>
-                  </div>
-                )}
-              </DrawerHeader>
-
-              <DrawerFooter className="flex flex-row items-center justify-center">
-                <DrawerClose
-                  className={buttonVariants({
-                    variant: "outline",
-                  })}
-                >
-                  <X className="h-4 w-4" />
-                  <p>Close</p>
-                </DrawerClose>
-
-                {user === null ? <LoginButton /> : <LogoutButton />}
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
+          <Link
+            className="relative flex flex-col items-center"
+            href={"/account"}
+          >
+            <User className="h-5 w-5" />
+            <p className="text-xs">account</p>
+            {user === null ? null : user?.whatsappNumber === null ? (
+              <TriangleAlert className="absolute -top-1 right-0 h-4 w-4 text-yellow-500" />
+            ) : (
+              <CircleCheck className="absolute -top-1 right-0 h-4 w-4 text-green-500" />
+            )}
+          </Link>
         </div>
       </div>
     </div>

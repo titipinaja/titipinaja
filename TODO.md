@@ -24,3 +24,4 @@ create web application
   - [x] show warning for logged in users that have a listing and no whatsapp number provided
   - [x] update explore page
   - [ ] enable user edit listing status
+- [x] move account settings to a page

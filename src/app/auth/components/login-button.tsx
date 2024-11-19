@@ -1,15 +1,22 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { LogIn } from "lucide-react";
 import { useRouter } from "next/navigation";
+import React from "react";
 
-export default function LoginButton() {
+type ILoginButtonProps = React.HTMLAttributes<HTMLDivElement>;
+
+export default function LoginButton(props: ILoginButtonProps) {
   const router = useRouter();
 
   return (
     <Button
-      className="flex w-fit gap-1 self-end bg-blue-400"
+      className={cn(
+        "flex w-fit items-center gap-x-1 bg-blue-400",
+        props.className,
+      )}
       onClick={async () => {
         router.push("/auth/login");
       }}

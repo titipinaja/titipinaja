@@ -3,17 +3,23 @@
 import { logOut } from "@/app/auth/actions";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 import { LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-export default function LogoutButton() {
+type ILogoutButtonProps = React.HTMLAttributes<HTMLDivElement>;
+
+export default function LogoutButton(props: ILogoutButtonProps) {
   const { toast } = useToast();
+  const router = useRouter();
 
   return (
     <Button
-      className="flex w-fit gap-1 self-end"
+      className={cn("flex w-fit items-center gap-1", props.className)}
       onClick={async () => {
         const { success } = await logOut();
         if (success) toast({ title: "Logout successful." });
+        router.push("/explore");
       }}
       size={"default"}
       variant={"destructive"}
