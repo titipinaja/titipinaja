@@ -7,7 +7,7 @@ create accounts
 - [x] create gmail account
 - [x] create github account
 - [x] create supabase account
-- [ ] create vercel account
+- [x] create vercel account
 
 create web application
 
@@ -22,4 +22,5 @@ create web application
   - [x] create listing card
   - [x] enable user delete their own listing
   - [x] show warning for logged in users that have a listing and no whatsapp number provided
-  - [ ] enable user edit their own listing
+  - [x] update explore page
+  - [ ] enable user edit listing status

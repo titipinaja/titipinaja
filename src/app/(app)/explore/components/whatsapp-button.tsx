@@ -22,7 +22,7 @@ export default function WhatsAppButton({
       disabled={!number}
     >
       <RiWhatsappLine className="h-5 w-5" />
-      <p className="font-mono">{number ?? "unknown"}</p>
+      <p className="font-mono">Chat via WhatsApp</p>
     </Button>
   );
 }

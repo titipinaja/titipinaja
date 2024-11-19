@@ -1,13 +1,20 @@
+import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { getListings } from "@/lib/db/listings";
 import { getCurrentSession } from "@/lib/session";
 import { toLocalDay } from "@/lib/utils";
 import {
   Banknote,
-  Calendar,
-  CalendarCheck2,
   Globe2,
+  Handshake,
   Luggage,
-  MapPin,
+  PlaneLanding,
+  PlaneTakeoff,
 } from "lucide-react";
 import AddListingButton from "./components/add-listing-button";
 import DeleteListingButton from "./components/delete-listing-button";
@@ -42,47 +49,97 @@ export default async function Page({
               ) : null}
             </div>
             <div className="mt-2 grid grid-cols-2 gap-y-4">
+              <Badge className="col-span-2 w-fit bg-blue-400">
+                Flight information
+              </Badge>
+
               <div className="col-span-1 flex flex-col gap-x-2 gap-y-1">
                 <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <PlaneTakeoff className="h-4 w-4" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Flight from</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+
                   <p className="font-bold">{listing.from}</p>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
+                <div className="ml-6 flex items-center gap-2">
                   <p>{toLocalDay(listing.departureAt)}</p>
                 </div>
               </div>
 
               <div className="col-span-1 flex flex-col gap-x-2 gap-y-1">
                 <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <PlaneLanding className="h-4 w-4" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Flight to</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+
                   <p className="font-bold">{listing.to}</p>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
+                <div className="ml-6 flex items-center gap-2">
                   <p>{toLocalDay(listing.arriveAt)}</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-x-2">
-                <Luggage className="h-4 w-4" />
-                <p>{listing.baggage} kg</p>
-              </div>
+              <Badge className="col-span-2 w-fit bg-blue-400">
+                Baggage information
+              </Badge>
 
-              <div className="flex items-center gap-x-2">
-                <Banknote className="h-4 w-4" />
-                <p>{listing.price} €/kg</p>
-              </div>
-
-              <div>
-                <div className="flex items-center gap-x-2 text-blue-400">
-                  <p className="font-bold">Last receive</p>
-                </div>
-                <div className="flex items-center gap-x-2">
-                  <CalendarCheck2 className="h-4 w-4" />
+              <div className="col-span-2 grid grid-cols-2 gap-y-1">
+                <div className="col-span-2 flex items-center gap-x-2">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Handshake className="h-4 w-4" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Latest date to receive item</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                   <p>{toLocalDay(listing.lastReceiveAt)}</p>
+                </div>
+
+                <div className="flex items-center gap-x-2">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Luggage className="h-4 w-4" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Total available luggage</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  <p>{listing.baggage} kg</p>
+                </div>
+
+                <div className="flex items-center gap-x-2">
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Banknote className="h-4 w-4" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Price in €/kg</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                  <p>{listing.price} €/kg</p>
                 </div>
               </div>
             </div>
