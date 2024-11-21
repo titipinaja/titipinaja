@@ -8,11 +8,13 @@ import React from "react";
 
 interface IWhatsAppButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   readonly number: string | null | undefined;
+  readonly isExpired: boolean;
 }
 
 export default function WhatsAppButton({
   number,
   className,
+  isExpired,
 }: IWhatsAppButtonProps) {
   const router = useRouter();
 
@@ -27,7 +29,7 @@ export default function WhatsAppButton({
       onClick={() => {
         router.push(`https://wa.me/${number}`);
       }}
-      disabled={!number}
+      disabled={!number || isExpired}
     >
       <RiWhatsappLine className="h-5 w-5" />
       <p className="font-mono">Contact</p>
